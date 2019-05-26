@@ -1,10 +1,9 @@
 const fetch = require('node-fetch');
-require('../../utils').Array;
+const utils = require('../../utils');
 
 const devices = () => {
-    return fetch('https://raw.githubusercontent.com/KrakenProject/official_devices/master/devices.json')
-    .then(res => res.json())
-    .then(json => sanitize(json));
+    return utils.request('https://raw.githubusercontent.com/KrakenProject/official_devices/master/devices.json')
+    .then(res => sanitize(res))
 }
 
 const sanitize = (json) => {
@@ -13,6 +12,8 @@ const sanitize = (json) => {
 
     // brands
     let brands = json.map((device) => device.brand).unique()
+
+    console.log(brands)
 
     // devices by brand
     list = brands.map((brand) => {

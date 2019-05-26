@@ -1,0 +1,8 @@
+{
+    "version": 2,
+    "name": "krakenapi",
+    "builds": [
+        { "src": "**/*.js", "use": "@now/node" }
+    ],
+    "routes":[{"src": "/.*", "dest": "index.js"}]
+  }

@@ -30,7 +30,7 @@ const device = async (codename) => {
 
     if(!!!details) return {message: 'device not found'}
 
-    res['device'] = details;
+    res['device'] = details[0];
 
     let builds = await fetchBuilds(codename);
 

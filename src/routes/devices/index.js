@@ -13,8 +13,6 @@ const sanitize = (json) => {
     // brands
     let brands = json.map((device) => device.brand).unique()
 
-    console.log(brands)
-
     // devices by brand
     list = brands.map((brand) => {
         return {name : brand, devices: json.filter(device => device.brand == brand)

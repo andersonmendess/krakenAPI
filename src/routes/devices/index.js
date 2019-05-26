@@ -9,12 +9,15 @@ const devices = () => {
 
 const sanitize = (json) => {
 
+    let list = [];
+
     // brands
     let brands = json.map((device) => device.brand).unique()
 
     // devices by brand
-    let list = brands.map((brand) => {
-        return { [brand] : json.filter((device) => device.brand == brand)}
+    list = brands.map((brand) => {
+        return {name : brand, devices: json.filter(device => device.brand == brand)
+            .map(i => { return { name: i.name, codename: i.codename } })}
     })
 
    return list;

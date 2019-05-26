@@ -26,10 +26,18 @@ const device = async (codename) => {
 
     res = {};
 
-    let builds = await fetchBuilds(codename);
     let details = await fetchDeviceDetails(codename);
 
+    if(!!!details) return {message: 'device not found'}
+
     res['device'] = details;
+
+    let builds = await fetchBuilds(codename);
+
+    if(!!!builds){
+        res['builds'] = []
+        return res
+    }
 
     const promises = builds.response.map(async (build) => {
 
@@ -50,7 +58,6 @@ const device = async (codename) => {
 
     res['builds'] = await Promise.all(promises)
  
-    
     return res;
 }
 

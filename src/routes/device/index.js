@@ -50,6 +50,7 @@ const device = async (codename) => {
             datetime: utils.humanDate(build.datetime),
             md5: build.id,
             url: build.url,
+            version: build.version,
             downloads: downloads.total,
             changelog: changelog,
         }

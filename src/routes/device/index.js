@@ -15,7 +15,8 @@ const device = async (codename) => {
 
     res['device'] = details[0];
 
-    res['builds'] = await builds(codename)
+    let  resBuilds = await builds(codename)
+    res['builds'] = resBuilds.builds
     
     return res;
 }

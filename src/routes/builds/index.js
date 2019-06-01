@@ -39,7 +39,7 @@ const builds = async (codename) => {
              changelog: changelog,
          }
  
-     })
+     }).reverse()
  
      res['builds'] = await Promise.all(promises)
  

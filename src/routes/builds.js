@@ -12,7 +12,7 @@ const fetchChangelog =  (filename, codename) => {
 };
 
 const fetchDownloadsCount = (filename, codename) => {
-    return utils.request('sourcefog', `/${codename}/${filename}/stats/json?start_date=2019-04-06&end_date=${utils.getToday()}`)
+    return utils.request('sourceforge', `/${codename}/${filename}/stats/json?start_date=2019-04-06&end_date=${utils.getToday()}`)
     .then(json => json);
 };
 

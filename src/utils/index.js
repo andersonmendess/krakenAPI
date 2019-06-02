@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 let BASE_URL = {
   github: 'https://raw.githubusercontent.com/KrakenProject/official_devices/master',
-  sourcefog: 'https://sourceforge.net/projects/krakenproject/files'
+  sourceforge: 'https://sourceforge.net/projects/krakenproject/files'
 }
 
 Array.prototype.unique = function () {

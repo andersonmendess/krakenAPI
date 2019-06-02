@@ -1,20 +1,18 @@
-const utils = require('../../utils');
+const utils = require('../utils');
 
-const BASE_URL_GIT = 'https://raw.githubusercontent.com/KrakenProject/official_devices/master'
-const BASE_URL_SF = 'https://sourceforge.net/projects/krakenproject/files'
 
 const fetchBuilds = (codename) => {
-    return utils.request(`${BASE_URL_GIT}/builds/${codename}.json`)
+    return utils.request('github', `/builds/${codename}.json`)
     .then(json => json)
 }
 
 const fetchChangelog =  (filename, codename) => {
-    return utils.request(`${BASE_URL_GIT}/changelog/${codename}/${filename.replace("zip","txt")}`, false)
+    return utils.request('github', `/changelog/${codename}/${filename.replace("zip","txt")}`, false)
     .then(text => text)
 };
 
 const fetchDownloadsCount = (filename, codename) => {
-    return utils.request(`${BASE_URL_SF}/${codename}/${filename}/stats/json?start_date=2019-04-06&end_date=${utils.getToday()}`)
+    return utils.request('sourcefog', `/${codename}/${filename}/stats/json?start_date=2019-04-06&end_date=${utils.getToday()}`)
     .then(json => json);
 };
 

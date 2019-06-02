@@ -1,7 +1,6 @@
 const routes = require('express').Router();
 
 const devices = require('./devices')
-const device = require('./device')
 const builds = require('./builds')
 
 routes.get('/', async (req, res) => {

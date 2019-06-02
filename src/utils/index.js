@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const BASE_URL = {
+let BASE_URL = {
   github: 'https://raw.githubusercontent.com/KrakenProject/official_devices/master',
   sourcefog: 'https://sourceforge.net/projects/krakenproject/files'
 }
@@ -26,7 +26,7 @@ const humanDate = (timestamp) => {
 
 const request = (server, adittionalUri, isJson = true) => {
   let url = BASE_URL[server]+adittionalUri
-  return fetch(url).then((res) => isJson ? res.json() : res.text()).catch((e) => console.log(e))
+  return fetch(url).then((res) => isJson ? res.json() : res.text())
 }
 
 const getToday = () => {

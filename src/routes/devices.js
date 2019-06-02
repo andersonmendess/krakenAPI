@@ -1,26 +1,31 @@
-const utils = require('../utils');
+const utils = require('../utils')
+const builds = require('./builds')
+const boom = require('express-boom')
 
 const fetchDeviceDetails = (codename) => {
     return utils.request('github', '/devices.json')
-    .then(json => json.filter((device) => device.codename == codename));
+    .then(json => json.filter((device) => device.codename == codename)[0]);
 }
 
-const device = async (codename) => {
+const get = async (codename) => {
 
     res = {};
+    let device = await fetchDeviceDetails(codename);
 
-    let details = await fetchDeviceDetails(codename);
-
-    res['device'] = details[0];
-
-    let  resBuilds = await builds(codename)
+    if(!device){
+        throw "Not Found"
+    }
+    res['device'] = device
+    let resBuilds = await builds(codename)
     res['builds'] = resBuilds.builds
     
     return res;
+
+    
 }
 
-const devices = () => {
-    return utils.request('github', 'devices.json')
+const getAll = () => {
+    return utils.request('github', '/devices.json')
     .then(res => sanitize(res))
 }
 
@@ -31,4 +36,4 @@ const sanitize = (json) => {
             devices: json.filter(device => device.brand === brand )}))
 }
 
-module.exports = { devices, device }
+module.exports = { get, getAll }
